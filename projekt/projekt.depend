@@ -1,0 +1,13 @@
+# depslib dependency file v1.0
+1652947859 source:c:\users\draga\documents\projekt32\projekt\main.c
+	<stdio.h>
+	"header.h"
+	<string.h>
+	<conio.h>
+
+1652947865 c:\users\draga\documents\projekt32\projekt\header.h
+
+1652946203 source:c:\users\draga\documents\projekt32\projekt\funkcije.c
+	<stdio.h>
+	"header.h"
+
