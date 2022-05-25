@@ -6,14 +6,16 @@
 
 int main (void)
 {
+    radnik_t* first=NULL;
+
     char imeFirme[50];
-    printf("Upisi ime firme:");
-    scanf("%49s",imeFirme);
+   // printf("Upisi ime firme:");
+   // fgets();
     char choice;
 	do {
 		printf("*****************************\n");
 		printf("1 - Upisi radnika\n");
-		printf("2 - funkcija 2\n");
+		printf("2 - Ispis radnika\n");
 		printf("3 - funkcija 3\n");
 		printf("0 - zavrsi program\n");
 		printf("*****************************\n");
@@ -22,11 +24,11 @@ int main (void)
 		switch (choice)
 		{
 		case '1':
-        upisiRadnika();
+        upisiRadnika(&first);
 			_getch();
 			break;
 		case '2':
-			//funkcija2();
+			ispisRadnika(first);
 			_getch();
 			break;
 		case '3':

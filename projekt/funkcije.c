@@ -3,15 +3,17 @@
 #include "header.h"
 
 
-radnik_t* upisiRadnika()
+void upisiRadnika(radnik_t** first)
 {
     int i;
 
 radnik_t* noviRadnik=(radnik_t*)calloc(1,sizeof(radnik_t));
 
 if(noviRadnik==NULL){
-return NULL;
+return;
 }
+noviRadnik->next=NULL;
+
     printf("Ime radnika: \n");
 	fgets(noviRadnik->ime, 20, stdin);
 	i = 0;
@@ -27,9 +29,28 @@ return NULL;
 	fgets(noviRadnik->brojTelefona, 20, stdin);
 	i = 0;
 
-
-
-
-	return noviRadnik;
+if(*first==NULL)
+{
+    *first=noviRadnik;
 }
-//github test
+else
+    {
+        noviRadnik->next=*first;
+    *first=noviRadnik;
+
+}
+
+
+	return ;
+}
+
+
+void ispisRadnika(radnik_t* f)
+{
+    radnik_t* temp=f;
+while(temp != NULL)
+    {
+    printf("%s,%s,%s\n",temp->ime,temp->prezime,temp->brojTelefona);
+temp=temp->next;
+    }
+}
