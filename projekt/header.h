@@ -13,5 +13,5 @@ typedef struct radnik
 void upisiRadnika(radnik_t**);
 void ispisRadnika(radnik_t*);
 void otkaziRadnika(radnik_t**,int);
-void urediRadnika(radnik_t**,int)
+void urediRadnika(radnik_t**,int);
 #endif // HEADER_H_INCLUDED

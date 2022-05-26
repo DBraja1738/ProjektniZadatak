@@ -40,17 +40,19 @@ int main (void)
 
 		    printf("Otkazi radnika koji ima ID:");
 		    scanf("%d",&trazeniID);
+		    _getch();
             otkaziRadnika(&first,trazeniID);
-			_getch();
+
 			break;
 		case '4':
             printf("Uredi radnika koji ima ID:");
 		    scanf("%d",&trazeniID);
+		    _getch();
             urediRadnika(&first,trazeniID);
 
 			break;
 		default:
-			printf("pogresan odabir!");
+			printf("pogresan odabir!\n");
 			_getch();
 			break;
 		}

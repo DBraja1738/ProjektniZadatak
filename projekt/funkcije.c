@@ -72,7 +72,7 @@ temp=temp->next;
 
 void otkaziRadnika(radnik_t** f, int trazeniID)
 {
-int i;
+//int i;
 radnik_t *temp = *f, *prev;
 
 
@@ -93,7 +93,7 @@ if (temp != NULL && temp->id == trazeniID) {
     if (temp == NULL)
         return;
 
-    // odspoji link listu
+    // prespoji link listu
     prev->next = temp->next;
 //oslobodi
     free(temp);
@@ -103,16 +103,18 @@ return;
 }
 void urediRadnika(radnik_t** f,int trazeniID)
 {
-    radnik_t* temp=f, *prev
+    radnik_t* temp=*f;
 
-    // ako je head trazeni id
-    if (temp != NULL && temp->id == trazeniID) {
-            printf("Zamjeni ime radnika");
-            fgets()
-            printf("Zamjeni prezime radnika");
+    int i=0;
 
-            printf("Zamjeni kontakt broj radnika");
+     while (temp != NULL && temp->id != trazeniID)
+        {
+        temp=temp->next;
+        }
 
+            printf("promjeni ime\n");
+            fgets(temp->ime,20,stdin);
 
-    }
+            return;
 }
+
