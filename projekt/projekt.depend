@@ -12,3 +12,16 @@
 	<stdlib.h>
 	"header.h"
 
+1653551199 source:c:\users\draga\documents\github\projektnizadatak\projekt\main.c
+	<stdio.h>
+	"header.h"
+	<string.h>
+	<conio.h>
+
+1653551230 c:\users\draga\documents\github\projektnizadatak\projekt\header.h
+
+1653546665 source:c:\users\draga\documents\github\projektnizadatak\projekt\funkcije.c
+	<stdio.h>
+	<stdlib.h>
+	"header.h"
+
