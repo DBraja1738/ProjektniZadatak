@@ -7,6 +7,7 @@ int globalIdCounter=0;
 
 int main (void)
 {
+    srand((unsigned)time(NULL));
     radnik_t* first=NULL;
 
   //  char imeFirme[50]={'\0'};
@@ -19,7 +20,7 @@ int main (void)
 		printf("2 - Ispis radnika\n");
 		printf("3 - Otkazi radnika\n");
 		printf("4 - Uredi radnika\n");
-		printf("5 - Sortiraj radnike\n");
+		printf("5 - Sortiraj radnike po satnici\n");
 		printf("6 - Upisi radnike u datoteku\n");
 		printf("0 - zavrsi program\n");
 
@@ -47,9 +48,13 @@ int main (void)
 		case '4':
             printf("Uredi radnika koji ima ID:");
 		    scanf("%d",&trazeniID);
-		    _getch();
+            _getch();
             urediRadnika(&first,trazeniID);
 
+			break;
+			case '5':
+            bubbleSort(first);
+            _getch();
 			break;
 		default:
 			printf("pogresan odabir!\n");

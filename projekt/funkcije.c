@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "header.h"
-
+#include <time.h>
 extern int globalIdCounter;
 
 void upisiRadnika(radnik_t** first)
@@ -30,16 +30,17 @@ noviRadnik->next=NULL;   //nuliranje veze link liste
 
 	while (noviRadnik->prezime[i] != '\n' && i < 20) i++;
 	noviRadnik->prezime[i] = '\0';
+    i=0;
+  //  printf("Radnikova satnica: \n");
+    noviRadnik->satnica=rand();
+   // _getch();
 
-    //printf("Radnikova satnica: \n");
-   // scanf(" %f",&noviRadnik->satnica);
-    //_getch();
-        i = 0;
 
 	printf("Kontakt broj radnika: \n");
 	fgets(noviRadnik->brojTelefona, 20, stdin);
 	i = 0;
-
+    while (noviRadnik->brojTelefona[i] != '\n' && i < 20) i++;
+	noviRadnik->prezime[i] = '\0';
 
 
 
@@ -64,7 +65,7 @@ void ispisRadnika(radnik_t* f)
     radnik_t* temp=f;
 while(temp != NULL)
     {
-    printf("%d,%s,%s,%s\n",temp->id,temp->ime,temp->prezime,temp->brojTelefona);
+    printf("%d,%s,%s,%s,%d\n",temp->id,temp->ime,temp->prezime,temp->brojTelefona,temp->satnica);
 temp=temp->next;
     }
 }
@@ -117,4 +118,45 @@ void urediRadnika(radnik_t** f,int trazeniID)
 
             return;
 }
+
+void bubbleSort(radnik_t *f)
+{
+    int swapped, i;
+    radnik_t *ptr1;
+    radnik_t *lptr = NULL;
+
+    /* provjera da ne postoji link lista */
+    if (f == NULL)
+        return;
+
+    do
+    {
+        swapped = 0;
+        ptr1 = f;
+
+        while (ptr1->next != lptr)  //ako je sljedeci link list razlicit od prosleg izvrsi petlju
+        {
+            if (ptr1->satnica > ptr1->next->satnica) //ako je satnica trenutnog veca od satnice sljedece zamjeni
+            {
+                zamjeni(ptr1, ptr1->next);
+                swapped = 1;
+            }
+            ptr1 = ptr1->next;// idi dalje kroz link listu
+        }
+        lptr = ptr1;
+    }
+    while (swapped);
+    //radi petlju dok se ne dodje do kraja
+    return;
+}
+
+/* zamjeniti mjesta pokazivaca a i b*/
+void zamjeni(radnik_t *a, radnik_t *b)
+{
+    int temp = a->satnica;
+    a->satnica = b->satnica;
+    b->satnica = temp;
+    return;
+}
+
 

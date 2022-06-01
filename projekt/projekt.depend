@@ -12,16 +12,17 @@
 	<stdlib.h>
 	"header.h"
 
-1653562720 source:c:\users\draga\documents\github\projektnizadatak\projekt\main.c
+1654097792 source:c:\users\draga\documents\github\projektnizadatak\projekt\main.c
 	<stdio.h>
 	"header.h"
 	<string.h>
 	<conio.h>
 
-1653561057 c:\users\draga\documents\github\projektnizadatak\projekt\header.h
+1654098109 c:\users\draga\documents\github\projektnizadatak\projekt\header.h
 
-1653562812 source:c:\users\draga\documents\github\projektnizadatak\projekt\funkcije.c
+1654097228 source:c:\users\draga\documents\github\projektnizadatak\projekt\funkcije.c
 	<stdio.h>
 	<stdlib.h>
 	"header.h"
+	<time.h>
 
