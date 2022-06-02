@@ -7,7 +7,7 @@ int globalIdCounter=0;
 
 int main (void)
 {
-    srand((unsigned)time(NULL));
+
     radnik_t* first=NULL;
 
   //  char imeFirme[50]={'\0'};
@@ -31,16 +31,19 @@ int main (void)
 		{
 		case '1':
         upisiRadnika(&first);
+        printf("Press any key to continue...\n");
 			_getch();
 			break;
 		case '2':
 			ispisRadnika(first);
+			printf("Press any key to continue...\n");
 			_getch();
 			break;
 		case '3':
 
 		    printf("Otkazi radnika koji ima ID:");
 		    scanf("%d",&trazeniID);
+		    printf("Press any key to continue...\n");
 		    _getch();
             otkaziRadnika(&first,trazeniID);
 
@@ -48,16 +51,29 @@ int main (void)
 		case '4':
             printf("Uredi radnika koji ima ID:");
 		    scanf("%d",&trazeniID);
+		    printf("Press any key to continue...\n");
             _getch();
             urediRadnika(&first,trazeniID);
 
 			break;
 			case '5':
             bubbleSort(first);
+            printf("Press any key to continue...\n");
+            _getch();
+			break;
+			case '6':
+            upisiUFile(first);
+            printf("Press any key to continue...\n");
+            _getch();
+			break;
+			case '0':
+            oslobodiMemoriju(&first);
+            printf("Press any key to continue...\n");
             _getch();
 			break;
 		default:
 			printf("pogresan odabir!\n");
+			printf("Press any key to continue...\n");
 			_getch();
 			break;
 		}

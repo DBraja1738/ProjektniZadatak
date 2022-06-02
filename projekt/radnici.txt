@@ -1,0 +1,4 @@
+ime:jozo,prezime:djeveljekaj,kontakt broj:9999999999999
+,satnica:10.990000
+ime:ivo,prezime:andric,kontakt broj:99999999
+,satnica:9.990000
