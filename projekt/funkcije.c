@@ -11,7 +11,7 @@ void upisiRadnika(radnik_t** first)
 radnik_t* noviRadnik=(radnik_t*)calloc(1,sizeof(radnik_t));
 
 if(noviRadnik==NULL){
-        printf("neuspjesno zauzimanje prostora")
+        printf("neuspjesno zauzimanje prostora");
         return;         //provjera za zauzimanje
 }
 noviRadnik->next=NULL;   //nuliranje taila link liste
@@ -135,11 +135,11 @@ void bubbleSort(radnik_t *f)
     int swapped, i;
     radnik_t *ptr1;
     radnik_t *lptr = NULL;
-
+printf("provjera link lista");
     /* provjera da ne postoji link lista */
     if (f == NULL)
         return;
-
+printf("pocetak petlje");
     do
     {
         swapped = 0;
@@ -147,9 +147,11 @@ void bubbleSort(radnik_t *f)
 
         while (ptr1->next != lptr)  //ako je sljedeci link list razlicit od prosleg izvrsi petlju
         {
+            printf("unutra while");
             if (ptr1->satnica > ptr1->next->satnica) //ako je satnica trenutnog veca od satnice sljedece zamjeni
             {
-                zamjeni(ptr1, ptr1->next);
+                printf("u ifu");
+                zamjeni(&ptr1, &ptr1->next);
                 swapped = 1;
             }
             ptr1 = ptr1->next;// idi dalje kroz link listu
@@ -162,11 +164,12 @@ void bubbleSort(radnik_t *f)
 }
 
 /* zamjeniti mjesta pokazivaca a i b*/
-void zamjeni(radnik_t *a, radnik_t *b)
+void zamjeni(radnik_t **a, radnik_t **b)
 {
-    float temp = a->satnica;
-    a->satnica = b->satnica;
-    b->satnica = temp;
+    printf("fukncija zamjeni");
+    radnik_t* temp = *a;
+    *a = *b;
+    *b = temp;
     return;
 }
 void upisiUFile(radnik_t* f)
