@@ -171,22 +171,25 @@ void zamjeni(radnik_t *a, radnik_t *b)
     radnik_t* temp = a;
     char tempIme[20],tempPrezime[20],tempBroj[20];
     float tempSatnica;
+    int tempID;
 
     strcpy(tempIme,a->ime);
     strcpy(tempPrezime,a->prezime);
     strcpy(tempBroj,a->brojTelefona);
     tempSatnica=a->satnica;
+    tempID=a->id;
 
     strcpy(a->ime,b->ime);
     strcpy(a->prezime,b->prezime);
     strcpy(a->brojTelefona,b->brojTelefona);
     a->satnica=b->satnica;
+    a->id=b->id;
 
     strcpy(b->ime,tempIme);
     strcpy(b->prezime,tempPrezime);
     strcpy(b->brojTelefona,tempBroj);
     b->satnica=tempSatnica;
-
+    b->id=tempID;
 
 
 
