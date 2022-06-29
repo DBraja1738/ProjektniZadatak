@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "header.h"
-
+#include <string.h>
 extern int globalIdCounter;
 
 void upisiRadnika(radnik_t** first)
@@ -133,6 +133,31 @@ void urediRadnika(radnik_t** f,int trazeniID)
 
 void bubbleSort(radnik_t *f)
 {
+int swapped, i;
+    radnik_t *ptr1;
+    radnik_t *lptr = NULL;
+
+    /* Checking for empty list */
+    if (f == NULL)
+        return;
+
+    do
+    {
+        swapped = 0;
+        ptr1 = f;
+
+        while (ptr1->next != lptr)
+        {
+            if (ptr1->satnica > ptr1->next->satnica)
+            {
+                zamjeni(ptr1, ptr1->next);
+                swapped = 1;
+            }
+            ptr1 = ptr1->next;
+        }
+        lptr = ptr1;
+    }
+    while (swapped);
 
 
 
@@ -140,17 +165,25 @@ void bubbleSort(radnik_t *f)
     return;
 }
 
-/* zamjeniti mjesta pokazivaca a i b*/
-void zamjeni(radnik_t **a, radnik_t **b)
+
+void zamjeni(radnik_t *a, radnik_t *b)
 {
     printf("fukncija zamjeni\n");
-    radnik_t* temp = *a;
+    radnik_t* temp = a;
 
-    *a = *b;
-    printf("*a = *b\n");
+    strcpy(a->ime,b->ime);
+    strcpy(a->prezime,b->prezime);
+    strcpy(a->brojTelefona,b->brojTelefona);
+    a->satnica=b->satnica;
 
-    *b = temp;
-    printf("*b = temp\n");
+    strcpy(b->ime,temp->ime);
+    strcpy(b->prezime,temp->prezime);
+    strcpy(b->brojTelefona,temp->brojTelefona);
+    b->satnica=temp->satnica;
+
+
+
+
     return;
 }
 void upisiUFile(radnik_t* f,char imeFirme[])

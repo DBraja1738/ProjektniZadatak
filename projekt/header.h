@@ -15,6 +15,6 @@ void ispisRadnika(radnik_t*);
 void otkaziRadnika(radnik_t**,int);
 void urediRadnika(radnik_t**,int);
 void bubbleSort(radnik_t*);
-void zamjeni(radnik_t**,radnik_t**);
+void zamjeni(radnik_t*,radnik_t*);
 void upisiUFile(radnik_t*,char[]);
 #endif // HEADER_H_INCLUDED
