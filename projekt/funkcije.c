@@ -18,6 +18,7 @@ noviRadnik->next=NULL;   //nuliranje taila link liste
 
     noviRadnik->id=globalIdCounter;
     globalIdCounter++;
+
     printf("Ime radnika: \n");
 	fgets(noviRadnik->ime, 20, stdin);
     i = 0;
@@ -31,18 +32,16 @@ noviRadnik->next=NULL;   //nuliranje taila link liste
 	noviRadnik->prezime[i] = '\0';
     i=0;
 
-    printf("Radnikova satnica: \n");
-    scanf("%f",&noviRadnik->satnica);
-    getchar();
-
-
 	printf("Kontakt broj radnika: \n");
 	fgets(noviRadnik->brojTelefona, 20, stdin);
-	getchar();
+
 	i = 0;
     while (noviRadnik->brojTelefona[i] != '\n' && i < 19) i++;
 	noviRadnik->prezime[i] = '\0';
 
+    printf("Radnikova satnica: \n");
+    scanf("%f",&noviRadnik->satnica);
+    getchar();
 
 
 if(*first==NULL)
@@ -64,9 +63,10 @@ else
 void ispisRadnika(radnik_t* f)
 {
     radnik_t* temp=f;
+    printf("id\time\tprezime\t satnica\tbroj telefona\n");
 while(temp != NULL)
     {
-    printf("%d,%s,%s,%s,%f\n",temp->id,temp->ime,temp->prezime,temp->brojTelefona,temp->satnica);
+    printf("%d\t%s\t%s\t%f\t%s\n",temp->id,temp->ime,temp->prezime,temp->satnica,temp->brojTelefona);
 temp=temp->next;
     }
 }
@@ -106,59 +106,36 @@ return;
 void urediRadnika(radnik_t** f,int trazeniID)
 {
     radnik_t* temp=*f;
+    int i;
 
-    int i=0;
 
      while (temp != NULL && temp->id != trazeniID)
         {
         temp=temp->next;
         }
-            getchar();
+
+
+
             printf("promjeni ime\n");
             fgets(temp->ime,20,stdin);
-            getchar();
+            temp->ime[strlen(temp->ime) - 1] = '\0';
             printf("promjeni prezime\n");
             fgets(temp->prezime,20,stdin);
-            getchar();
+            temp->prezime[strlen(temp->prezime) - 1] = '\0';
             printf("promjeni kontakt broj\n");
             fgets(temp->brojTelefona,20,stdin);
-            getchar();
+            temp->ime[strlen(temp->brojTelefona) - 1] = '\0';
             printf("promjeni satnicu\n");
             scanf("%f",&temp->satnica);
-            getchar();
 
             return;
 }
 
 void bubbleSort(radnik_t *f)
 {
-    int swapped, i;
-    radnik_t *ptr1;
-    radnik_t *lptr = NULL;
-printf("provjera link lista");
-    /* provjera da ne postoji link lista */
-    if (f == NULL)
-        return;
-printf("pocetak petlje");
-    do
-    {
-        swapped = 0;
-        ptr1 = f;
 
-        while (ptr1->next != lptr)  //ako je sljedeci link list razlicit od prosleg izvrsi petlju
-        {
-            printf("unutra while");
-            if (ptr1->satnica > ptr1->next->satnica) //ako je satnica trenutnog veca od satnice sljedece zamjeni
-            {
-                printf("u ifu");
-                zamjeni(&ptr1, &ptr1->next);
-                swapped = 1;
-            }
-            ptr1 = ptr1->next;// idi dalje kroz link listu
-        }
-        lptr = ptr1;
-    }
-    while (swapped);
+
+
     //radi petlju dok se ne dodje do kraja
     return;
 }
@@ -166,13 +143,17 @@ printf("pocetak petlje");
 /* zamjeniti mjesta pokazivaca a i b*/
 void zamjeni(radnik_t **a, radnik_t **b)
 {
-    printf("fukncija zamjeni");
+    printf("fukncija zamjeni\n");
     radnik_t* temp = *a;
+
     *a = *b;
+    printf("*a = *b\n");
+
     *b = temp;
+    printf("*b = temp\n");
     return;
 }
-void upisiUFile(radnik_t* f)
+void upisiUFile(radnik_t* f,char imeFirme[])
 {
     radnik_t* temp=f;
     FILE* fp=fopen("radnici.txt","w");
@@ -181,9 +162,11 @@ void upisiUFile(radnik_t* f)
         printf("neuspjesno otvoren file");
         return;
     }
+    fprintf(fp,"\t\t\t%s",imeFirme);
+    fprintf(fp,"id\time\tprezime\t satnica\tbroj telefona\n");
     while(temp!=NULL){
 
-    fprintf(fp,"ime:%s,prezime:%s,kontakt broj:%s,satnica:%f\n",temp->ime,temp->prezime,temp->brojTelefona,temp->satnica);
+    fprintf(fp,"%d\t%s\t%s\t%f\t%s\n",temp->id,temp->ime,temp->prezime,temp->satnica,temp->brojTelefona);
     temp=temp->next;
     }
     fclose(fp);

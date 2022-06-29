@@ -1,4 +1,6 @@
-ime:jozo,prezime:djeveljekaj,kontakt broj:9999999999999
-,satnica:10.990000
-ime:ivo,prezime:andric,kontakt broj:99999999
-,satnica:9.990000
+			jozo doo
+id	ime	prezime	 satnica	broj telefona
+1	ivan	ivanic	3.330000	39393939
+
+0	jure	juric	3.330000	39393939
+

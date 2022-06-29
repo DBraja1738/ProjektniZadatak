@@ -10,9 +10,9 @@ int main (void)
 
     radnik_t* first=NULL;
 
-  //  char imeFirme[50]={'\0'};
-  //  printf("Upisi ime firme:");
-    // fgets(imeFirme,50,stdin);
+char imeFirme[50]={'\0'};
+printf("Upisi ime firme:");
+fgets(imeFirme,50,stdin);
     char choice;
 	do {
 		printf("*****************************\n");
@@ -51,18 +51,16 @@ int main (void)
 		case '4':
             printf("Uredi radnika koji ima ID:");
 		    scanf("%d",&trazeniID);
-		    printf("Press any key to continue...\n");
-            _getch();
+		    getchar();
+
             urediRadnika(&first,trazeniID);
 
 			break;
 			case '5':
             bubbleSort(first);
-            printf("Press any key to continue...\n");
-            _getch();
 			break;
 			case '6':
-            upisiUFile(first);
+            upisiUFile(first,imeFirme);
             printf("Press any key to continue...\n");
             _getch();
 			break;
