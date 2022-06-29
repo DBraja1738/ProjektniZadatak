@@ -1,6 +1,8 @@
-			jozo doo
+			rudina doo
 id	ime	prezime	 satnica	broj telefona
-1	ivan	ivanic	3.330000	39393939
+2	jure	juric	2.000000	010101010
 
-0	jure	juric	3.330000	39393939
+1	marko	livaja	3.500000	3123123
+
+0	ivan	ivanic	5.000000	43434343
 

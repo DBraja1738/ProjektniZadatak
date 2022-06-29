@@ -137,7 +137,7 @@ int swapped, i;
     radnik_t *ptr1;
     radnik_t *lptr = NULL;
 
-    /* Checking for empty list */
+
     if (f == NULL)
         return;
 
@@ -168,18 +168,24 @@ int swapped, i;
 
 void zamjeni(radnik_t *a, radnik_t *b)
 {
-    printf("fukncija zamjeni\n");
     radnik_t* temp = a;
+    char tempIme[20],tempPrezime[20],tempBroj[20];
+    float tempSatnica;
+
+    strcpy(tempIme,a->ime);
+    strcpy(tempPrezime,a->prezime);
+    strcpy(tempBroj,a->brojTelefona);
+    tempSatnica=a->satnica;
 
     strcpy(a->ime,b->ime);
     strcpy(a->prezime,b->prezime);
     strcpy(a->brojTelefona,b->brojTelefona);
     a->satnica=b->satnica;
 
-    strcpy(b->ime,temp->ime);
-    strcpy(b->prezime,temp->prezime);
-    strcpy(b->brojTelefona,temp->brojTelefona);
-    b->satnica=temp->satnica;
+    strcpy(b->ime,tempIme);
+    strcpy(b->prezime,tempPrezime);
+    strcpy(b->brojTelefona,tempBroj);
+    b->satnica=tempSatnica;
 
 
 
