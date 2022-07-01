@@ -1,8 +1,3 @@
-			rudina doo
-id	ime	prezime	 satnica	broj telefona
-2	jure	juric	2.000000	010101010
-
-1	marko	livaja	3.500000	3123123
-
-0	ivan	ivanic	5.000000	43434343
-
+2	ivan	ivanic	3.000000	3123123123
+1	marko	brajkovic	13.000000	123123
+0	ivo	ivic	4.000000	21312

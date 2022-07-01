@@ -4,6 +4,55 @@
 #include <string.h>
 extern int globalIdCounter;
 
+radnik_t* readFile(void)
+{
+
+    int nID,i;
+    FILE* fp=fopen("id.txt","r");
+    if(fp==NULL){
+        printf("program je prvi put pokrenut\n");
+        return;
+    }
+
+    fscanf(fp,"%d",&nID);
+    fclose(fp);
+    if(nID==0)
+        {
+        return NULL;
+        }
+    globalIdCounter=nID;
+
+    radnik_t* first=NULL;
+    fp=(fopen("radnici.txt","r"));
+
+for(i=0;i<=nID;i++)
+    {
+    radnik_t* noviRadnik=(radnik_t*)calloc(1,sizeof(radnik_t));
+    if(noviRadnik==NULL)
+        {
+        printf("allocation fail");
+        return NULL;
+        }
+
+    fscanf(fp,"%d\t%s\t%s\t%f\t%s\n",&noviRadnik->id,noviRadnik->ime,noviRadnik->prezime,&noviRadnik->satnica,noviRadnik->brojTelefona);
+
+    if(first=NULL){
+        first=noviRadnik;              //stvori link listu
+}
+else
+    {
+        noviRadnik->next=first;        //ako postoji link lista povezi samo
+    first=noviRadnik;
+
+}
+
+
+return first;
+}
+
+
+
+
 void upisiRadnika(radnik_t** first)
 {
     int i;
@@ -34,16 +83,12 @@ noviRadnik->next=NULL;   //nuliranje taila link liste
 
 	printf("Kontakt broj radnika: \n");
 	fgets(noviRadnik->brojTelefona, 20, stdin);
-
-	i = 0;
-    while (noviRadnik->brojTelefona[i] != '\n' && i < 19) i++;
-	noviRadnik->prezime[i] = '\0';
+    noviRadnik->brojTelefona[strlen(noviRadnik->brojTelefona)-1]='\0';
 
     printf("Radnikova satnica: \n");
     scanf("%f",&noviRadnik->satnica);
     getchar();
-
-
+//treba kad se pojavi radnik da se zapise u datoteku i na pocetku da se iscita iz datoteke
 if(*first==NULL)
 {
     *first=noviRadnik;              //stvori link listu
@@ -54,7 +99,13 @@ else
     *first=noviRadnik;
 
 }
+radnik_t* temp=*first;
+    FILE* fp=fopen("radnici.txt","w");
 
+    while(temp!=NULL){
+fprintf(fp,"%d\t%s\t%s\t%f\t%s\n",temp->id,temp->ime,temp->prezime,temp->satnica,temp->brojTelefona);
+    temp=temp->next;
+    }
 
 	return ;
 }
@@ -223,6 +274,23 @@ void oslobodiMemoriju(radnik_t** f)
  temp=*f;
  }
 *f=NULL;
+}
+void pamtiID(radnik_t *f)
+{
+    radnik_t* temp=f;
+    int i=0;
+    while(temp!=NULL)
+        {
+        i++;
+        temp=temp->next;
+        }
+
+FILE* fp=fopen("id.txt","w");
+
+fprintf(fp,"%d",i);
+
+fclose(fp);
+
 }
 
 

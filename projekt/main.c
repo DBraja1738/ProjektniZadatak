@@ -8,8 +8,8 @@ int globalIdCounter=0;
 int main (void)
 {
 
-    radnik_t* first=NULL;
-
+   radnik_t* first=readFile();
+   // readFile();
 char imeFirme[50]={'\0'};
 printf("Upisi ime firme:");
 fgets(imeFirme,50,stdin);
@@ -65,6 +65,7 @@ fgets(imeFirme,50,stdin);
             _getch();
 			break;
 			case '0':
+            pamtiID(first);
             oslobodiMemoriju(&first);
             printf("Press any key to continue...\n");
             _getch();
