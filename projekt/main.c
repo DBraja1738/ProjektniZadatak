@@ -1,7 +1,8 @@
 #include <stdio.h>
 #include "header.h"
 #include <string.h>
-#include <conio.h>
+#include <stdlib.h>
+
 
 int globalIdCounter=0;
 
@@ -65,6 +66,7 @@ fgets(imeFirme,50,stdin);
             _getch();
 			break;
 			case '0':
+            updateFile(first);
             pamtiID(first);
             oslobodiMemoriju(&first);
             printf("Press any key to continue...\n");

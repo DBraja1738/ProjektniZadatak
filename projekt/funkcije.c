@@ -1,7 +1,9 @@
+
 #include <stdio.h>
 #include <stdlib.h>
 #include "header.h"
 #include <string.h>
+
 extern int globalIdCounter;
 
 radnik_t* readFile(void)
@@ -11,7 +13,7 @@ radnik_t* readFile(void)
     FILE* fp=fopen("id.txt","r");
     if(fp==NULL){
         printf("program je prvi put pokrenut\n");
-        return;
+        return NULL;
     }
 
     fscanf(fp,"%d",&nID);
@@ -23,21 +25,42 @@ radnik_t* readFile(void)
     globalIdCounter=nID;
 
     radnik_t* first=NULL;
-    fp=(fopen("radnici.txt","r"));
-
-for(i=0;i<=nID;i++)
+    fp=fopen("radnici.txt","r");
+    if(fp==NULL)
     {
-    radnik_t* noviRadnik=(radnik_t*)calloc(1,sizeof(radnik_t));
-    if(noviRadnik==NULL)
-        {
-        printf("allocation fail");
+    printf("file open fail\n");
+    return NULL;
+    }
+radnik_t* noviRadnik;
+char tempIme[20],tempPrez[20],tempBroj[20];
+int tempID;
+float tempSat;
+
+for(i=0;i<nID;i++){
+
+strcpy(tempIme,"");
+strcpy(tempPrez,"");
+strcpy(tempBroj,"");
+
+fscanf(fp,"%d\t%s\t%s\t%f\t%s\n",&tempID,tempIme,tempPrez,&tempSat,tempBroj);
+
+radnik_t* noviRadnik=(radnik_t*)calloc(1,sizeof(radnik_t));
+
+if(noviRadnik==NULL){
+        printf("neuspjesno zauzimanje prostora");
         return NULL;
-        }
+}
+noviRadnik->next=NULL;
 
-    fscanf(fp,"%d\t%s\t%s\t%f\t%s\n",&noviRadnik->id,noviRadnik->ime,noviRadnik->prezime,&noviRadnik->satnica,noviRadnik->brojTelefona);
+strcpy(noviRadnik->ime,tempIme);
+strcpy(noviRadnik->prezime,tempPrez);
+strcpy(noviRadnik->brojTelefona,tempBroj);
+noviRadnik->id=tempID;
+noviRadnik->satnica=tempSat;
 
-    if(first=NULL){
-        first=noviRadnik;              //stvori link listu
+if(first==NULL)
+{
+    first=noviRadnik;              //stvori link listu
 }
 else
     {
@@ -45,6 +68,11 @@ else
     first=noviRadnik;
 
 }
+
+
+}
+
+
 
 
 return first;
@@ -99,13 +127,6 @@ else
     *first=noviRadnik;
 
 }
-radnik_t* temp=*first;
-    FILE* fp=fopen("radnici.txt","w");
-
-    while(temp!=NULL){
-fprintf(fp,"%d\t%s\t%s\t%f\t%s\n",temp->id,temp->ime,temp->prezime,temp->satnica,temp->brojTelefona);
-    temp=temp->next;
-    }
 
 	return ;
 }
@@ -178,7 +199,7 @@ void urediRadnika(radnik_t** f,int trazeniID)
             temp->ime[strlen(temp->brojTelefona) - 1] = '\0';
             printf("promjeni satnicu\n");
             scanf("%f",&temp->satnica);
-
+            getchar();
             return;
 }
 
@@ -246,6 +267,7 @@ void zamjeni(radnik_t *a, radnik_t *b)
 
     return;
 }
+
 void upisiUFile(radnik_t* f,char imeFirme[])
 {
     radnik_t* temp=f;
@@ -265,6 +287,7 @@ void upisiUFile(radnik_t* f,char imeFirme[])
     fclose(fp);
 
 }
+
 void oslobodiMemoriju(radnik_t** f)
 {
  radnik_t* temp=*f;
@@ -275,6 +298,7 @@ void oslobodiMemoriju(radnik_t** f)
  }
 *f=NULL;
 }
+
 void pamtiID(radnik_t *f)
 {
     radnik_t* temp=f;
@@ -292,7 +316,60 @@ fprintf(fp,"%d",i);
 fclose(fp);
 
 }
+void updateFile(radnik_t* f)
+{
+FILE* fp=NULL;
 
 
+radnik_t* temp= f;
+fp=fopen("radnici.txt","w");
+
+    while(temp!=NULL){
+fprintf(fp,"%d\t%s\t%s\t%f\t%s\n",temp->id,temp->ime,temp->prezime,temp->satnica,temp->brojTelefona);
+    temp=temp->next;
+    }
+
+fclose(fp);
+return;
+}
 
 
+/*void deserialise(radnik_t** f)
+{
+FILE* fp=fopen("radnici.txt",'r');
+if(fp==NULL)
+    {
+    printf("file open fail\n");
+    return;
+    }
+
+radnik_t* temp;
+
+while(fscanf(fp,"%d\t%s\t%s\t%f\t%s\n",temp->id,&temp->ime,&temp->prezime,temp->satnica,&temp->brojTelefona)>0){
+insert_end(f,*temp);
+}
+fclose(fp);
+return;
+}
+
+
+void insert_end(radnik_t** root, radnik_t value) {
+    radnik_t* new_node = malloc(sizeof(radnik_t));
+    if (new_node == NULL) {
+        exit(1);
+    }
+    new_node->next = NULL;
+    new_node->satnica = value.satnica;
+
+    if (*root == NULL) {
+        *root = new_node;
+        return;
+    }
+
+    radnik_t* curr = *root;
+    while (curr->next != NULL) {
+        curr = curr->next;
+    }
+    curr->next = new_node;
+}
+*/
