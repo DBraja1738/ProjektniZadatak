@@ -22,5 +22,6 @@ void oslobodiMemoriju(radnik_t**);
 void deserialise(radnik_t**);
 void updateFile(radnik_t*);
 void insert_end(radnik_t**, radnik_t);
+void maxID(radnik_t*);
 
 #endif // HEADER_H_INCLUDED

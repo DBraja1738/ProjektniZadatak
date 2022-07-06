@@ -10,6 +10,7 @@ int main (void)
 {
 
    radnik_t* first=readFile();
+   maxID(first);
    // readFile();
 char imeFirme[50]={'\0'};
 printf("Upisi ime firme:");

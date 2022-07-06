@@ -332,7 +332,22 @@ fprintf(fp,"%d\t%s\t%s\t%f\t%s\n",temp->id,temp->ime,temp->prezime,temp->satnica
 fclose(fp);
 return;
 }
+void maxID(radnik_t* f)
+{
+radnik_t* temp=f;
+int max=0;
+while(temp!=NULL)
+    {
+        if(temp->id>max)
+            {
+            max=temp->id;
+            }
 
+    temp=temp->next;
+    }
+globalIdCounter=max+1;
+return;
+}
 
 /*void deserialise(radnik_t** f)
 {
